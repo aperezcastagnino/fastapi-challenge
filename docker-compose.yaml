@@ -1,11 +1,24 @@
 
 services:
   backend:
-    build: .
+    build:
+      context: ./backend
+      dockerfile: dockerfile
     ports:
       - '8000:8000'
     volumes:
-      - .:/backend
-    env_file: .env
+      - ./backend:/backend
+    env_file: ./backend/.env
+    stdin_open: true
+    tty: true
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: dockerfile
+    ports:
+      - '8501:8501'
+    volumes:
+      - ./frontend:/frontend
+    env_file: ./frontend/.env
     stdin_open: true
     tty: true
